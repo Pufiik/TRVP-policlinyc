@@ -312,25 +312,25 @@ function addItem(card: Element, listCont: Element, options?: IItemOptions) {
             return;
         }
 
-        if (!validateHardness(card)) {
-            alert('Превышена суммарная сложность смены.');
-            return;
-        }
-
         const result = await query('procedure', 'GET', undefined, {id: itemProcedureSelect.value});
         const newHardness = +(await result.json())[0].hardness;
+
         if (listItem.getAttribute('edited') === 'true') {
             const uuid = listCont.parentElement!.parentElement!.id;
 
             if (listItem.id) {
                 await query('entry', 'POST', {
-                    name: itemFioInput.value,
+                    fio: itemFioInput.value,
                     procedure: itemProcedureSelect.value
                 }, {
                     id: id,
                 });
                 card.setAttribute('total-hardness', (+card.getAttribute('total-hardness')! + newHardness - +listItem.getAttribute('hardness')!).toString());
             } else {
+                if (!validateHardness(card)) {
+                    alert('Превышена суммарная сложность смены.');
+                    return;
+                }
                 await query('shift', 'POST', {
                     itemId: id,
                     entry: {
@@ -619,7 +619,7 @@ async function addListElement() {
         const dateInput = addInput(content!, {
             classes: ['title'],
             label: 'city',
-            labelName: 'Место назначения',
+            labelName: 'Дата смены',
             type: 'date'
         });
 

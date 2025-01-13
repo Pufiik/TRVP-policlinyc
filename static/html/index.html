@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../../dist/index.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <p>Личный кабинет врача</p>
+</header>
+<div class="modal hidden">
+    <div class="modal-window">
+        <div class="content"></div>
+        <div class="modal-buttons">
+            <img src="../assets/delete.svg" alt="Cancel" onclick="toggleModal()">
+        </div>
+    </div>
+</div>
+<main>
+    <ul class="cards-list">
+        <li class="add-buttons">
+            <button class="add-btn" onclick="addListElement()">
+                Добавить смену
+            </button>
+            <button class="add-btn" onclick="createProcedure()">
+                Создать процедуру
+            </button>
+        </li>
+    </ul>
+</main>
+<script>
+    init();
+</script>
+</body>
+</html>
